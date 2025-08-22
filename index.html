@@ -12,7 +12,7 @@
 
   <!-- Фон -->
   <div class="background" aria-hidden="true"></div>
-
+  
 
   <!-- SVG молнии -->
   <svg class="lightning-svg" width="100%" height="100%" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -56,8 +56,18 @@
   <script src="script.js"></script>
 
   <!-- Аудио -->
-  <audio id="bg-audio" src="audio/grom-molniya-31695.mp3" autoplay loop muted></audio>
+  <audio id="bg-audio" src="audio/grom-molniya-31695.mp3" autoplay loop muted preload="auto"></audio>
   <audio id="thunderSound" src="audio/grom-molniya-31695.mp3" preload="auto"></audio>
+
+  <!-- SVG фильтр для воды -->
+<svg xmlns="http://www.w3.org/2000/svg">
+  <filter id="water">
+    <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="turb"/>
+    <feDisplacementMap in2="turb" in="SourceGraphic" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+    <animate xlink:href="#water feTurbulence" attributeName="baseFrequency" dur="5s" values="0.02;0.05;0.02" repeatCount="indefinite"/>
+  </filter>
+</svg>
+
 
 </body>
 </html>

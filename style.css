@@ -169,4 +169,38 @@ body{
   .glass-btn{ padding:8px 12px;border-radius:10px }
 }
 
-/* Конец файла */
+/* Вспышка молнии */
+.flash {
+  background: white !important;
+  transition: background 0.1s;
+}
+
+/* Дрожание кнопок */
+@keyframes shake {
+  0% { transform: translate(0, 0) rotate(0); }
+  20% { transform: translate(-2px, 1px) rotate(-1deg); }
+  40% { transform: translate(2px, -1px) rotate(1deg); }
+  60% { transform: translate(-1px, 2px) rotate(0); }
+  80% { transform: translate(1px, -2px) rotate(1deg); }
+  100% { transform: translate(0, 0) rotate(0); }
+}
+
+.shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+/* Эффект дождя на аватарке и панели */
+.avatar,
+.info-panel {
+  filter: url(#water);
+}
+
+/* SVG фильтр для имитации дождя */
+svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+/* Счетчик просмотров */
+.view-counter { font-size: 0.9rem; color: #fff; text-align: center; } 
