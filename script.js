@@ -215,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     thunder.currentTime = 0;
     thunder.play();
-
+    
     setTimeout(() => strikes.removeChild(bolt), 300);
   }
 
