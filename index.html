@@ -1,0 +1,63 @@
+<!-- ...existing code... -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Grozan Визитка</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Фон -->
+  <div class="background" aria-hidden="true"></div>
+
+
+  <!-- SVG молнии -->
+  <svg class="lightning-svg" width="100%" height="100%" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+        <feMerge>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+    <g id="strikes"></g>
+  </svg>
+
+<!-- ...existing code... -->
+  <!-- Центральный контент: аватар + имя -->
+  <main class="content" role="main" aria-label="Визитка">
+    <div class="avatar-container" role="region" aria-label="Профиль">
+      <img src="media/Avatar.png" alt="Аватар Grozan" class="avatar avatar--down">
+      <h1 class="glow-text neon-red">Grozan</h1>
+      <p class="lead multicolor">ЛИДЕР КЛАНА SADマTENEY</p>
+      <div class="mt-3 d-flex gap-2 flex-wrap justify-content-center controls">
+        <a class="glass-btn btn btn-telegram" href="https://t.me/GROZANYouTube" target="_blank" rel="noopener noreferrer" aria-label="Телеграмм">1. Телеграмм</a>
+        <a class="glass-btn btn btn-clan" href="https://t.me/sad_teneyy" aria-label="Набор в клан">2. Набор в клан</a>
+        <a class="glass-btn btn btn-coop" href="https://t.me/GROZANSHOP" aria-label="Сотрудничество">3. Сотрудничество</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Панель информации -->
+  <aside id="infoPanel" class="info-panel" aria-hidden="true">
+    <div class="info-inner">
+      <button class="close-info btn btn-sm" aria-label="Закрыть" onclick="window.closeInfo && window.closeInfo()">Закрыть</button>
+      <h4>Информация</h4>
+      <p>Контакты, ссылки и описание.</p>
+    </div>
+  </aside>
+
+  <!-- Скрипт -->
+  <script src="script.js"></script>
+
+  <!-- Аудио -->
+  <audio id="bg-audio" src="audio/grom-molniya-31695.mp3" autoplay loop muted></audio>
+  <audio id="thunderSound" src="audio/grom-molniya-31695.mp3" preload="auto"></audio>
+
+</body>
+</html>

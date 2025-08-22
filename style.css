@@ -1,0 +1,172 @@
+/* Базовые переменные */
+:root{
+  --glass-bg: rgba(255,255,255,0.06);
+  --glass-border: rgba(255,255,255,0.18);
+  --accent-red: #ff2d2d;
+  --text: #ffffff;
+}
+
+/* Сброс и общие правила */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;padding:0;font-family:Inter, "Segoe UI", Arial, sans-serif;color:var(--text);background:#000;overflow:hidden}
+/* ...existing code... */
+body{
+  background-image: url("media/fon.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.background{
+  position: fixed;
+  inset: 0;
+  background-image: url("media/fon.jpg"); /* <-- замените на нужное имя, например "media/new-fon.jpg" */
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: #000; /* запасной цвет */
+  filter: saturate(1.05) contrast(0.98);
+  z-index: -2;
+}
+
+/* Центральный контейнер — ровно по центру экрана */
+.content{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:20;
+  pointer-events:auto;
+  padding:20px;
+}
+
+/* Карточка аватара */
+.avatar-container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+  padding:20px;
+  border-radius:16px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  backdrop-filter: blur(6px) saturate(1.05);
+  box-shadow: 0 12px 50px rgba(0,0,0,0.6);
+  max-width: 92%;
+  text-align:center;
+}
+.avatar{
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid rgba(255,255,255,0.12);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 20px rgba(255,0,0,0.04);
+  transition: transform .28s ease, box-shadow .28s ease;
+  transform: translateY(var(--avatar-offset)); /* вместо margin-top */
+}
+:root{ --avatar-offset: 12px; } /* положительное = вниз, отрицательное = вверх */
+/* Утилиты — быстро менять положение */
+.avatar--up-small  { --avatar-offset: -9px;  }
+.avatar--up        { --avatar-offset: -24px; }
+.avatar--up-large  { --avatar-offset: -40px; }
+.avatar--down-small{ --avatar-offset: 8px;   }
+.avatar-container:hover .avatar{ transform: translateY(-6px) scale(1.03); }
+
+/* Заголовок: неоново-красный */
+.glow-text.neon-red{
+  color: var(--accent-red);
+  font-size:2.4rem;
+  margin:0;
+  text-shadow:
+    0 0 8px rgba(255,45,45,0.95),
+    0 0 22px rgba(255,45,45,0.7),
+    0 0 48px rgba(255,0,0,0.25);
+  -webkit-text-stroke: 0.5px rgba(255,80,80,0.6);
+}
+
+/* Многоцветный текст подписи */
+.lead.multicolor{
+  margin:0;
+  font-weight:500;
+  background: linear-gradient(90deg,#9ef 0%,#8ff 35%,#7ff 70%,#ffd36b 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+}
+
+/* Кнопки (стекло) */
+.controls{ margin-top:8px; width:100%; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+.glass-btn{
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border:1px solid var(--glass-border);
+  color:var(--text);
+  padding:10px 14px;
+  border-radius:12px;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transition: transform .18s ease, box-shadow .18s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+  user-select:none;
+  -webkit-tap-highlight-color:transparent;
+  animation: subtle-wobble 4.5s ease-in-out infinite;
+}
+
+/* Цветовые варианты */
+.btn-telegram{ border-color: rgba(0,142,255,0.28); color:#cfefff; box-shadow:0 6px 18px rgba(0,142,255,0.04) }
+.btn-clan{ border-color: rgba(180,80,220,0.22); color:#ffd6fb; box-shadow:0 6px 18px rgba(180,80,220,0.03) }
+.btn-coop{ border-color: rgba(120,200,80,0.22); color:#f8ffea; box-shadow:0 6px 18px rgba(120,200,80,0.03) }
+
+/* Hover / active — вибрация */
+.glass-btn:hover, .glass-btn:active{
+  animation:none;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+  animation: shake 560ms ease-in-out;
+}
+
+/* Анимации */
+@keyframes shake{
+  0%{ transform: translateY(0) }
+  20%{ transform: translateX(-4px) translateY(-2px) }
+  40%{ transform: translateX(3px) translateY(-1px) }
+  60%{ transform: translateX(-2px) translateY(-2px) }
+  80%{ transform: translateX(2px) translateY(-1px) }
+  100%{ transform: translateX(0) translateY(0) }
+}
+@keyframes subtle-wobble{
+  0%{ transform: translateY(0) rotate(0) }
+  50%{ transform: translateY(-1px) rotate(-0.15deg) }
+  100%{ transform: translateY(0) rotate(0) }
+}
+
+/* Падающая звезда */
+.shooting-star{ position:fixed;width:3px;height:3px;border-radius:50%;background:linear-gradient(90deg,#fff,#9ef);box-shadow:0 0 8px rgba(158,239,255,0.9);transform:rotate(-20deg);z-index:50;pointer-events:none;animation:shoot 1.2s linear forwards }
+@keyframes shoot{ from{opacity:1;transform:translate(0,0) rotate(-20deg)} to{opacity:0;transform:translate(-120vw,120vh) rotate(-20deg)} }
+
+/* SVG молний */
+.lightning-svg{ position:fixed; inset:0; z-index:5; pointer-events:none }
+.lightning-svg polyline{ stroke-linejoin:round; stroke-linecap:round; opacity:0.95; filter:url(#glow); animation: flash .15s linear }
+@keyframes flash{ 0%{opacity:0} 10%{opacity:1} 100%{opacity:0} }
+
+/* Инфо-панель */
+.info-panel{ position:fixed; left:0; right:0; bottom:0; height:42%; transform:translateY(100%); background:linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.85)); box-shadow:0 -10px 30px rgba(0,0,0,0.6); transition:transform 300ms ease; z-index:40; display:flex; align-items:center; justify-content:center; padding:18px }
+.info-panel.show{ transform:translateY(0) }
+.info-inner{ max-width:920px; width:100%; color:#fff; }
+.close-info{ position:absolute; right:14px; top:8px }
+
+/* Canvas дождя */
+#rain{ position:fixed; top:0; left:0; z-index:8; pointer-events:none; width:100%; height:100% }
+
+/* Адаптив */
+@media (max-width:520px){
+  .avatar{ width:140px;height:140px }
+  .glow-text.neon-red{ font-size:1.8rem }
+  .glass-btn{ padding:8px 12px;border-radius:10px }
+}
+
+/* Конец файла */
